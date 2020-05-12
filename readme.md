@@ -72,4 +72,5 @@ Aerial Scene Classification](https://captain-whu.github.io/AID/)
 vgg16 | 224 | - | - | - 
 resnet34 | 224 | 9 | 0.966 | ✓
 resnet34 | 320 | 29 | 0.975 | ✗
+resnet34 | 600 | 26 | 0.981 | ✓
 densenet121 | 224 | 36 | 0.975 | ✓

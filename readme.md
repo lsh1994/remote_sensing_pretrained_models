@@ -69,4 +69,6 @@ Aerial Scene Classification](https://captain-whu.github.io/AID/)
  
 网络 | 输入尺寸  | 最优迭代次数 | 验证集精度
 :-: | :-: | :-: | :-:  
+vgg16 | 224 | - | - 
 resnet34 | 224 | 9 | 0.966 
+densenet121 | 224 | 36 | 0.975

@@ -1,16 +1,14 @@
-[中文说明](./readme_zh.md)  
-# Why
+# 起因
 
-When we deal with remote sensing problems, ImageNet pre-training weights are often used to initialize the pre-network. The natural image is quite different from remote sensing (scene) image, so the amount of data and the number of iterations are higher needed. So, I trained some basic convolutional neural networks on some public datasets, hoping to migrate better and faster.
+当我们处理遥感问题时候，经常使用ImageNet预训练权重对前置网络初始化。ImageNet的自然图像与遥感（场景）图像有较大区别，所以数据量、迭代次数等要求的也更高。为此，我在一些公开数据集上训练了一些基础卷积神经网络，希望能够更好更快的迁移学习。
 
-# How
+# 使用
 
-This code used pytorch=1.4.0, python3.6.10. GPU:1050Ti(4G). 
+代码基于 pytorch=1.4.0, python3.6.10。
 
-You can download weights in [Releases](https://github.com/lsh1994/remote_sensing_pretrained_models/releases).  
+你可以通过 [Releases](https://github.com/lsh1994/remote_sensing_pretrained_models/releases) 下载训练好的权重.  
 
-For example, you can code as blow get model:
-
+为了使用模型，你可以编码如下：
 ```python
 import torch
 from albumentations.pytorch import ToTensorV2
@@ -19,7 +17,7 @@ import cv2
 import albumentations as alb
 
 # 模型加载样例
-weights = torch.load(r"output\resnet34-epoch=9-val_acc=0.953.ckpt")["state_dict"] # 模型权重
+weights = torch.load(r"output/resnet34-epoch=9-val_acc=0.966.ckpt")["state_dict"] # 模型权重
 for k in list(weights.keys()):
     weights[str(k)[4:]]=weights.pop(k)
 
@@ -28,14 +26,15 @@ net.load_state_dict(weights) # 加载权重字典
 print(net)
 
 ```
-Test a image:
+测试一张图片:
 ```python
+# 测试一张图片
 labels_dict = ['Airport', 'BareLand', 'BaseballField', 'Beach', 'Bridge', 'Center', 'Church', 'Commercial', 'DenseResidential',
      'Desert', 'Farmland', 'Forest', 'Industrial', 'Meadow', 'MediumResidential', 'Mountain', 'Park', 'Parking',
      'Playground', 'Pond', 'Port', 'RailwayStation', 'Resort', 'River', 'School', 'SparseResidential', 'Square',
      'Stadium', 'StorageTanks', 'Viaduct']
-
-image = cv2.imread(r"E:/MLDataset/Classify/AID/AID/Port\port_120.jpg", cv2.IMREAD_COLOR)
+     
+image = cv2.imread(r"D:/Game_lsh/Gloabel_data/AID/Viaduct/viaduct_256.jpg", cv2.IMREAD_COLOR)
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 transforms_train = alb.Compose([
         alb.Resize(height=224, width=224, p=1),
@@ -45,29 +44,29 @@ transforms_train = alb.Compose([
 image = transforms_train(image=image)['image']
 image = torch.unsqueeze(image,dim=0)
 
+net.eval()
 output = net(image)
 output = torch.softmax(output,dim=1)
 index =torch.argmax(output[0]).item()
+
 print(output)
 print(output[0,index].item(),labels_dict[index])
 ```
 
-# Result
-
-Training scripts are relatively rudimentary and similar.If you want to get better test set precision or generalization ability, you can use better and more data enhancement, regularization techniques and training strategies.
+# 结果
+数据集被拆分成训练：验证=8：2。
 
 ## AID
 [AID: A Benchmark Dataset for Performance Evaluation of 
-Aerial Scene Classification](http://captain.whu.edu.cn/WUDA-RSImg/aid.html)
+Aerial Scene Classification](https://captain-whu.github.io/AID/)
 
-The data set has 10,000 600x600 images and 30 categories.  
-![](./others/aid-dataset.png)  
-
-Reference "eda.ipynb" for more information.
-
-Resize to 224x224.
+数据集有10000张 600x600 图片，30类别。  
  
-Network | Iterations | batch_size | validation set acc  
+
+参考文件夹下 "aid/eda.ipynb" 获取数据分析.
+
+
+ 
+网络 | 输入尺寸  | 最优迭代次数 | 验证集精度
 :-: | :-: | :-: | :-:  
-resnet34 | 200 | 256 | 0.9540 
- ResNet50 | 200 | 128 | 0.9951 
+resnet34 | 224 | 9 | 0.966 

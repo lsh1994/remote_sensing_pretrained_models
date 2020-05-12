@@ -31,9 +31,12 @@ def VGG(arch_name, num_classes, pretrained=True):
     # 修改分类层
     # backbone.avgpool = nn.AdaptiveMaxPool2d(output_size=(1, 1))
     backbone.classifier = nn.Sequential(
-        # nn.Dropout(0.5),
         nn.Linear(
-            backbone.classifier[0].in_features, num_classes))
+            backbone.classifier[0].in_features, 1024),
+        nn.ReLU(inplace=True),
+        nn.Dropout(0.5),
+        nn.Linear(in_features=1024,out_features=num_classes)
+    )
     return backbone
 
 
@@ -77,8 +80,8 @@ def inception_resnet(n_classes, pretrained=True):
     return net
 
 if __name__ == '__main__':
-    # net = VGG(arch_name="vgg16", num_classes=30)
-    net = ResNet(arch_name="resnet34", num_classes=30)
+    net = VGG(arch_name="vgg16", num_classes=30)
+    # net = ResNet(arch_name="resnet34", num_classes=30)
     # net = Efficient("efficientnet-b0",num_classes=30)
 
     # net = SENet("se_resnext50_32x4d",30,False)

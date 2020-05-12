@@ -60,12 +60,7 @@ print(output[0,index].item(),labels_dict[index])
 [AID: A Benchmark Dataset for Performance Evaluation of 
 Aerial Scene Classification](https://captain-whu.github.io/AID/)
 
-数据集有10000张 600x600 图片，30类别。  
- 
-
-参考文件夹下 "aid/eda.ipynb" 获取数据分析.
-
-
+数据集有10000张 600x600 图片，30类别。参考文件夹下 "aid/eda.ipynb" 获取数据分析。
  
 网络 | 输入尺寸  | 最优迭代次数 | 验证集精度 | 是否发布权重
 :-: | :-: | :-: | :-: | :-:   
@@ -74,3 +69,5 @@ resnet34 | 224 | 9 | 0.966 | ✓
 resnet34 | 320 | 29 | 0.975 | ✗
 resnet34 | 600 | 26 | 0.981 | ✓
 densenet121 | 224 | 36 | 0.975 | ✓
+
+附：当数据划分为5：5时，使用resnet34,输入尺寸224，在第8次获得验证集精度0.959。

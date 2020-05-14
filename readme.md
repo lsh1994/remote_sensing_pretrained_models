@@ -57,8 +57,7 @@ print(output[0,index].item(),labels_dict[index])
 数据集被拆分成训练：验证=8：2。
 
 ## AID
-[AID: A Benchmark Dataset for Performance Evaluation of 
-Aerial Scene Classification](https://captain-whu.github.io/AID/)
+[AID: A Benchmark Dataset for Performance Evaluation of Aerial Scene Classification](https://captain-whu.github.io/AID/)
 
 数据集有10 000张 600x600 图片，30类别，每类200\~400，空间分辨率0.5\~0.8m。参考文件夹下 "aid/eda.ipynb" 获取数据分析。
 
@@ -83,7 +82,8 @@ efficientnet-b2 | 224 | 27 | 0.979 | ✓
 网络 | 输入尺寸  | 最优迭代次数 | 验证集精度 | 是否发布权重
 :- | :-: | :-: | :-: | :-:   
 resnet34 | 256 | 19 | 0.921 | ✓
-efficientnet-b2 | 256 | - | - | ✓
+densenet121 | 256 | 19 | 0.927 | ✓
+efficientnet_b2 | 256 | - | - | ✓
 
 ## AID++
 

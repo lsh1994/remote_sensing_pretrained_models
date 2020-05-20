@@ -55,6 +55,24 @@ print(output[0,index].item(),labels_dict[index])
 
 # 结果
 
+<!-- ## AID++ -->
+
+<!-- ## BigEarthNet -->
+
+## RSD46-WHU
+
+[RSD46-WHU](https://github.com/RSIA-LIESMARS-WHU/RSD46-WHU)
+
+数据集有117 000张 256x256 图片，46类别，每类500\~3000，空间分辨率0.5\~2m。实验提供的（过滤非图片和重复文件）训练：验证 = 92110：16810。
+
+网络模型实验如下： 
+网络 | 输入尺寸  | 最优迭代次数 | 验证集精度 | 是否发布权重
+:- | :-: | :-: | :-: | :-:   
+resnet34 | 256 | 19 | 0.921 | ✓
+densenet121 | 256 | 19 | 0.927 | ✓
+se_resnext50_32x4d | 224 | 19 | 0.930 | ✓
+efficientnet-b2 | 256 | 19 | 0.931 | ✓
+
 ## AID
 [AID: A Benchmark Dataset for Performance Evaluation of Aerial Scene Classification](https://captain-whu.github.io/AID/)
 
@@ -70,22 +88,3 @@ densenet121 | 224 | 36 | 0.975 | ✓
 efficientnet-b2 | 224 | 27 | 0.979 | ✓
 
 附：当数据划分为5：5时，使用resnet34,输入尺寸224，在第8次获得验证集精度0.959。
-
-## RSD46-WHU
-
-[RSD46-WHU](https://github.com/RSIA-LIESMARS-WHU/RSD46-WHU)
-
-数据集有117 000张 256x256 图片，46类别，每类500\~3000，空间分辨率0.5\~2m。实验提供的训练：验证 = 92110：16810 = 。
-
-网络模型实验如下： 
-网络 | 输入尺寸  | 最优迭代次数 | 验证集精度 | 是否发布权重
-:- | :-: | :-: | :-: | :-:   
-resnet34 | 256 | 19 | 0.921 | ✓
-densenet121 | 256 | 19 | 0.927 | ✓
-se_resnext50_32x4d | 224 | 19 | 0.930 | ✓
-efficientnet-b2 | 256 | - | - | ✓
-
-<!-- ## AID++ -->
-
-
-<!-- ## BigEarthNet -->

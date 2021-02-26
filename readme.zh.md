@@ -34,7 +34,7 @@ labels_dict = ['Airport', 'BareLand', 'BaseballField', 'Beach', 'Bridge', 'Cente
      'Playground', 'Pond', 'Port', 'RailwayStation', 'Resort', 'River', 'School', 'SparseResidential', 'Square',
      'Stadium', 'StorageTanks', 'Viaduct']
      
-image = cv2.imread(r"D:/Game_lsh/Gloabel_data/AID/Viaduct/viaduct_256.jpg", cv2.IMREAD_COLOR)
+image = cv2.imread(r"AID/Viaduct/viaduct_256.jpg", cv2.IMREAD_COLOR)
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 transforms_train = alb.Compose([
         alb.Resize(height=224, width=224, p=1),
@@ -54,24 +54,33 @@ print(output[0,index].item(),labels_dict[index])
 ```
 
 # 结果
-数据集被拆分成训练：验证=8：2。
+
+<!-- ## AID++ -->
+
+<!-- ## BigEarthNet -->
+
+## RSD46-WHU
+
+[RSD46-WHU](https://github.com/RSIA-LIESMARS-WHU/RSD46-WHU)
+
+数据集有117 000张 256x256 图片，46类别，每类500\~3000，空间分辨率0.5\~2m。实验提供的（过滤非图片和重复文件）训练：验证 = 92110：16810。
+
+网络模型实验如下： 
+网络 | 输入尺寸  | 最优迭代次数 | 验证集精度 | 是否发布权重
+:- | :-: | :-: | :-: | :-:   
+resnet34 | 256 | 19 | 0.921 | ✓
+densenet121 | 256 | 19 | 0.927 | ✓
+se_resnext50_32x4d | 224 | 19 | 0.930 | ✓
+efficientnet-b2 | 256 | 19 | 0.931 | ✓
 
 ## AID
-[AID: A Benchmark Dataset for Performance Evaluation of 
-Aerial Scene Classification](https://captain-whu.github.io/AID/)
+[AID: A Benchmark Dataset for Performance Evaluation of Aerial Scene Classification](https://captain-whu.github.io/AID/)
 
-数据集有10000张 600x600 图片，30类别。参考文件夹下 "aid/eda.ipynb" 获取数据分析。
+数据集有10 000张 600x600 图片，30类别，每类200\~400，空间分辨率0.5\~0.8m。实验拆分训练：验证=8：2。参考文件夹下 "aid/eda.ipynb" 获取数据分析。
 
->'Airport', 'BareLand', 'BaseballField', 'Beach', 'Bridge',
-'Center', 'Church', 'Commercial', 'DenseResidential','Desert', 
-'Farmland', 'Forest', 'Industrial', 'Meadow', 'MediumResidential',
-'Mountain', 'Park', 'Parking','Playground', 'Pond', 
-'Port', 'RailwayStation', 'Resort', 'River', 'School', 
-'SparseResidential', 'Square','Stadium', 'StorageTanks', 'Viaduct'
- 
-Network | Input size | Best iterations | Val accuracy | publish weights
+网络模型实验如下： 
+网络 | 输入尺寸  | 最优迭代次数 | 验证集精度 | 是否发布权重
 :- | :-: | :-: | :-: | :-:   
-vgg16 | 224 | - | - | - 
 resnet34 | 224 | 9 | 0.966 | ✓
 resnet34 | 320 | 29 | 0.975 | ✗
 resnet34 | 600 | 26 | 0.981 | ✓

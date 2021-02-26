@@ -30,6 +30,9 @@ def VGG(arch_name, num_classes, pretrained=True):
     backbone = models.__dict__[arch_name](pretrained)
     # 修改分类层
     # backbone.avgpool = nn.AdaptiveMaxPool2d(output_size=(1, 1))
+    # backbone.classifier[-1] =nn.Linear(
+    #         backbone.classifier[-1].in_features, num_classes)
+    
     backbone.classifier = nn.Sequential(
         nn.Linear(
             backbone.classifier[0].in_features, 1024),
@@ -37,6 +40,7 @@ def VGG(arch_name, num_classes, pretrained=True):
         nn.Dropout(0.5),
         nn.Linear(in_features=1024,out_features=num_classes)
     )
+
     return backbone
 
 

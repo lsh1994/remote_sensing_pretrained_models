@@ -14,7 +14,7 @@ net.load_state_dict(weights) # 加载权重字典
 print(net)
 
 # 测试一张图片
-image = cv2.imread(r"D:/Game_lsh/Gloabel_data/AID/Port\port_120.jpg", cv2.IMREAD_COLOR)
+image = cv2.imread(r"D:/Game_lsh/Gloabel_data/AID/Viaduct/viaduct_256.jpg", cv2.IMREAD_COLOR)
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 transforms_train = alb.Compose([
         alb.Resize(height=224, width=224, p=1),
@@ -24,6 +24,7 @@ transforms_train = alb.Compose([
 image = transforms_train(image=image)['image']
 image = torch.unsqueeze(image,dim=0)
 
+net.eval()
 output = net(image)
 output = torch.softmax(output,dim=1)
 index =torch.argmax(output[0]).item()

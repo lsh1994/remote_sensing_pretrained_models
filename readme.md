@@ -68,8 +68,8 @@ print(output[0,index].item(),labels_dict[index])
 The data set has 117,000 256x256 pictures, 46 categories, 500\~3000 for each category, and a spatial resolution of 0.5\~2m. Training provided by the experiment (filtering non-pictures and duplicate files): Verification = 92110: 16810.
 
 The network model experiment is as follows:      
-Network | Input size | Optimal number of iterations | Validation set accuracy |  publish weights
-:- | :-: | :-: | :-: | :-:         
+| Network | Input size | Optimal number of iterations | Validation set accuracy |  publish weights |   
+| :- | :-: | :-: | :-: | :-: |            
 resnet34 | 256 | 19 | 0.921 | ✓   
 densenet121 | 256 | 19 | 0.927 | ✓   
 se_resnext50_32x4d | 224 | 19 | 0.930 | ✓    

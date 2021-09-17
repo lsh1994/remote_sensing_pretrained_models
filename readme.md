@@ -80,13 +80,14 @@ efficientnet-b2 | 256 | 19 | 0.931 | ✓
 
 The data set has 10 000 600x600 pictures, 30 categories, 200\~400 for each category, and a spatial resolution of 0.5\~0.8m. Experimental split training: verification=8:2. Refer to "aid/eda.ipynb" under the folder for data analysis.
 
-The network model experiment is as follows:
-Network | Input size | Optimal number of iterations | Validation set accuracy |  publish weights
-:- | :-: | :-: | :-: | :-:   
-resnet34 | 224 | 9 | 0.966 | ✓
+The network model experiment is as follows:  
+| Network | Input size | Optimal number of iterations | Validation set accuracy |  publish weights | 
+| :-: | :-: | :-: | :-: | :-: |     
+| resnet34 | 224 | 9 | 0.966 | ✓ |  
 resnet34 | 320 | 29 | 0.975 | ✗
 resnet34 | 600 | 26 | 0.981 | ✓
 densenet121 | 224 | 36 | 0.975 | ✓
 efficientnet-b2 | 224 | 27 | 0.979 | ✓
+
 
 Attachment: When the data is divided into 5:5, use resnet34, input size 224, and obtain the verification set accuracy of 0.959 at the 8th time.
